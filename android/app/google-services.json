@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "852306047985",
+    "firebase_url": "https://fooddelivery-a4f8f-default-rtdb.firebaseio.com",
+    "project_id": "fooddelivery-a4f8f",
+    "storage_bucket": "fooddelivery-a4f8f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852306047985:android:e29bccf836045976e90a50",
+        "android_client_info": {
+          "package_name": "com.flutter.food.delivery.app.food_delivery"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy33fYPiULFu1Ax_rw091SOojKDYdrXew"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
