@@ -1,5 +1,6 @@
 # food_delivery
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 Food delivery App
 
@@ -15,6 +16,9 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+it is made app that food delivery to Flutter
+>>>>>>> 325f3375b8e99d80378252f4cb55e41d73bb2ab2
 =======
 it is made app that food delivery to Flutter
 >>>>>>> 325f3375b8e99d80378252f4cb55e41d73bb2ab2
