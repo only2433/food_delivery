@@ -7,7 +7,7 @@
   
   현재는 프로토 타입 이며, 추후 더 개발을 해야 합니다. 
 
-Food delivery App
+
 
 ## Feature
 - Firebase Auth 를 이용한 계정 생성 및 로그인
