@@ -1,24 +1,13 @@
-# food_delivery
-<<<<<<< HEAD
-<<<<<<< HEAD
+# About
+  해당 어플리케이션은 Flutter로 제작한 음식 주문 서비스 입니다. <br>
+  Firebase를 이용하여, 사용자 가입 및 로그인이 가능합니다. 또한 <br>
+  각 사용자 별로 주문 및 결제의 데이터를 저장 및 관리 합니다. <br>
+  GetX를 이용한 MVVM 디자인 패턴을 사용하여 개발 하였으며, <br>
+  현재는 프로토 타입 이며, 추후 더 개발을 해야 합니다. 
 
 Food delivery App
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-=======
-it is made app that food delivery to Flutter
->>>>>>> 325f3375b8e99d80378252f4cb55e41d73bb2ab2
-=======
-it is made app that food delivery to Flutter
->>>>>>> 325f3375b8e99d80378252f4cb55e41d73bb2ab2
+## Feature
+- Firebase Auth 를 이용한 계정 생성 및 로그인
+- Firebase Database 및 Storage를 이용 하여, 각각의 계정에 대한 정보 및 주문 정보를 Save & Delete & Load
+- GetX를 이용한 Binding 및 Stream
