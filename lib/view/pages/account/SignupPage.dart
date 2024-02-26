@@ -508,18 +508,9 @@ class _SignupPageState extends State<SignupPage> {
 
     String data = _userPhoneNumber;
     Logger.d("data : $data", tag: Common.APP_NAME);
-    if(_userPhoneNumber.length == 10)
-    {
-      setState(() {
-        _phoneNumberController.text = '${data.substring(0,3)}-${data.substring(3,6)}-${data.substring(6,data.length)}';
-      });
-    }
-    else if(_userPhoneNumber.length == 11)
-    {
-      setState(() {
-        _phoneNumberController.text = '${data.substring(0,3)}-${data.substring(3,7)}-${data.substring(7,data.length)}';
-      });
-    }
+    setState(() {
+      _phoneNumberController.text = CommonUtils.getInstance().getPhoneNumber(data);
+    });
     _focusNodeList[3].unfocus();
     Logger.d("_userPhoneNumber : $_userPhoneNumber", tag: Common.APP_NAME);
   }

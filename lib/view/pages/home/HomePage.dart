@@ -87,13 +87,13 @@ class _HomePageState extends State<HomePage> {
           activeColorPrimary: CupertinoColors.activeBlue,
           inactiveColorPrimary: CupertinoColors.systemGrey),
       PersistentBottomNavBarItem(
-          icon: Icon(Icons.history),
-          title: ('History'),
+          icon: Icon(Icons.pin_drop_outlined),
+          title: ('Address'),
           activeColorPrimary: CupertinoColors.activeBlue,
           inactiveColorPrimary: CupertinoColors.systemGrey),
       PersistentBottomNavBarItem(
-          icon: Icon(Icons.shopping_cart),
-          title: ('Cart'),
+          icon: Icon(Icons.shopping_cart_checkout),
+          title: ('Checkout'),
           activeColorPrimary: CupertinoColors.activeBlue,
           inactiveColorPrimary: CupertinoColors.systemGrey),
       PersistentBottomNavBarItem(

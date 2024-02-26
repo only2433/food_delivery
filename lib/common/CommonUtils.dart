@@ -38,6 +38,11 @@ class CommonUtils {
     return result;
   }
 
+  String getUserBirthday(DateTime date) {
+    String result = DateFormat('MM/dd/yyyy').format(date);
+    return result;
+  }
+
   Map<String, int> getPerOrderForCartItems(List<CartItem> list) {
     Map<String, int> result = Map();
     for (int i = 0; i < list.length; i++) {
@@ -92,6 +97,20 @@ class CommonUtils {
 
   String getDateText(DateTime time) {
     return '${time.year}-${time.month}-${time.day}';
+  }
+
+  String getPhoneNumber(String data)
+  {
+    String result = "";
+    if(data.length == 10)
+      {
+        result = '${data.substring(0,3)}-${data.substring(3,6)}-${data.substring(6,data.length)}';
+      }
+    else
+      {
+        result = '${data.substring(0,3)}-${data.substring(3,7)}-${data.substring(7,data.length)}';
+      }
+    return result;
   }
 
 }

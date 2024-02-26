@@ -14,7 +14,7 @@ import 'RecommendProductController.dart';
 
 class AuthDataController extends GetxController {
   Rxn<User> _user = Rxn<User>();
-  late UserData _userData;
+  UserData? _userData = null;
   final AuthDataRepository authDataRepository;
 
   AuthDataController({required this.authDataRepository});
@@ -31,6 +31,7 @@ class AuthDataController extends GetxController {
       }
       else {
         Logger.d("go to login", tag: Common.APP_NAME);
+        _userData = null;
         Get.offAllNamed(RouteHelper.getLoginPage());
         //LOGIN 페이지로 이동
       }
@@ -57,6 +58,11 @@ class AuthDataController extends GetxController {
   Future<void> uploadUserData(String uid, File userImage, UserData data) async
   {
     authDataRepository.uploadToSignUpUserData(uid, userImage, data);
+  }
+
+  UserData getUserData()
+  {
+    return _userData!!;
   }
 
   Future<UserCredential> login(String email, String password) async

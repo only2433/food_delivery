@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easylogger/flutter_logger.dart';
 import 'package:food_delivery/controller/CartController.dart';
+import 'package:food_delivery/controller/CartHistoryController.dart';
 import 'package:food_delivery/utils/Colors.dart';
 import 'package:food_delivery/view/base/NoDataPage.dart';
 import 'package:food_delivery/view/widget/AppIcon.dart';
@@ -27,21 +28,42 @@ class _CartHistoryState extends State<CartHistory>
 {
   var listCounter = 0;
 
-
   @override
   void initState()
   {
     super.initState();
-    Get.find<CartController>().getCartHistoryList();
+    Logger.d("initState");
+    listCounter = 0;
+    Get.find<CartHistoryController>().getCartHistoryList();
   }
 
 
   @override
+  void dispose() {
+    super.dispose();
+    Logger.d("initState");
+  }
+
+
+  @override
+  void activate() {
+    super.activate();
+    Logger.d("activate");
+  }
+
+
+  @override
+  void deactivate() {
+    super.deactivate();
+    Logger.d("deactivate");
+  }
+
+  @override
   Widget build(BuildContext context)
   {
-
     return Scaffold(
-      body: GetBuilder<CartController>(builder: (controller) {
+      body: GetBuilder<CartHistoryController>(builder: (controller) {
+        Logger.d("controller.cartHistoryList size : ${controller.cartHistoryList?.length}, listCounter : ${listCounter}");
        if(controller.cartHistoryList != null)
          {
            return Column(
@@ -133,9 +155,8 @@ class _CartHistoryState extends State<CartHistory>
                                            GestureDetector(
                                              onTap: () {
                                                Map<int, CartItem> data = CommonUtils.getInstance().getCartItemForPerTimes(controller.cartHistoryList!, controller.itemsPerOrderTimeList[i]);
-
-                                               Logger.d("data : ${data.toString()}");
-                                               Get.find<CartController>().setCheckoutDetailItems(data);
+                                               Logger.d("data : ${data.toString()}", tag: Common.TAG);
+                                               Get.find<CartController>().setCartDetailItems(data);
                                                Get.toNamed(RouteHelper.getCartPage(ViewPage.CART_DETAIL));
                                              },
                                              child: Container(

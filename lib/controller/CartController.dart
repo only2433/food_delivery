@@ -16,10 +16,8 @@ class CartController extends GetxController {
   CartController({required this.cartRepository});
 
   Map<int, CartItem> _items = {};
-  Map<int, CartItem> _checkoutDetailItems = {};
-  List<CartItem>? cartHistoryList = null;
-  late List<int> itemsPerOrderCountList;
-  late List<String> itemsPerOrderTimeList;
+  Map<int, CartItem> _cartDetailItems = {};
+  List<CartItem> storageItems = [];
 
   List<CartItem> get getItemList {
     return _items.entries.map((e) {
@@ -28,14 +26,14 @@ class CartController extends GetxController {
   }
 
   List<CartItem> get checkoutItemList{
-    return _checkoutDetailItems.entries.map((e) {
+    return _cartDetailItems.entries.map((e) {
       return e.value;
     }).toList();
   }
 
-  List<CartItem> storageItems = [];
-
   Future<void> settingStorageCartData() async {
+    storageItems = [];
+    _items = {};
     storageItems = await cartRepository.getCartList();
     for (int i = 0; i < storageItems.length; i++) {
       Logger.d("index : $i , data : ${storageItems[i].productItem!.toString()!}", tag: Common.APP_NAME);
@@ -128,9 +126,9 @@ class CartController extends GetxController {
     return total;
   }
 
-  int get checkoutAmount{
+  int get cartDetailTotalAmount{
     var total = 0;
-    _checkoutDetailItems.forEach((key, value) {
+    _cartDetailItems.forEach((key, value) {
       total += (value.quantity! * value.price!);
     });
     return total;
@@ -154,24 +152,9 @@ class CartController extends GetxController {
     update();
   }
 
-  void setCheckoutDetailItems(Map<int, CartItem> data)
+  void setCartDetailItems(Map<int, CartItem> data)
   {
-    _checkoutDetailItems = {};
-    _checkoutDetailItems = data;
-    update();
-  }
-
-
-  Future<void> getCartHistoryList() async
-  {
-    Logger.d("getCartHistoryList request");
-    cartHistoryList = await cartRepository.getCartHistoryList();
-
-    Logger.d("getCartHistoryList complete");
-    cartHistoryList = cartHistoryList!.reversed.toList();
-    Map<String, int> cartItemsPerOrder = CommonUtils.getInstance().getPerOrderForCartItems(cartHistoryList!);
-    itemsPerOrderCountList = cartItemsPerOrder.entries.map((e) => e.value).toList();
-    itemsPerOrderTimeList = cartItemsPerOrder.entries.map((e) => e.key).toList();
-    update();
+    _cartDetailItems = {};
+    _cartDetailItems = data;
   }
 }

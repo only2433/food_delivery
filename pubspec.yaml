@@ -50,6 +50,9 @@ dependencies:
   cloud_firestore:
   modal_progress_hud_nsn:
   google_fonts:
+  geolocator:
+  geocoding:
+  google_maps_flutter:
 
 dev_dependencies:
   flutter_test:

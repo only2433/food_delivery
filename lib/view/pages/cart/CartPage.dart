@@ -34,16 +34,17 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage>
 {
   ViewPage viewPage = ViewPage.CART;
+  final loadingController = Get.find<LoadingController>();
 
   @override
   void initState() {
     super.initState();
-    ViewPage viewPage = CommonUtils.getInstance().getViewPage(widget.page);
+    viewPage = CommonUtils.getInstance().getViewPage(widget.page);
+    Logger.d(("viewPage : ${viewPage.toString()}"));
   }
 
   @override
   Widget build(BuildContext context) {
-
     Logger.d(("viewPage : ${viewPage.toString()}"));
     return GetBuilder<LoadingController>(builder: (loading) {
       return ModalProgressHUD(
@@ -165,14 +166,15 @@ class _CartPageState extends State<CartPage>
                                                           viewPage == ViewPage.CART ?
                                                           GestureDetector(
                                                             onTap: () async{
-                                                              loading.enable();                                                              await Future.delayed(Duration(
+                                                              loadingController.enable();
+                                                              await Future.delayed(Duration(
                                                                 seconds: 1
                                                               ));
                                                               int currentQuantity = list[index].quantity!;
                                                               await controller.addItem(
                                                                   list[index].productItem!,
                                                                   currentQuantity - 1);
-                                                              loading.disable();
+                                                              loadingController.disable();
                                                             },
                                                             child: Icon(Icons.remove, color: AppColors.signColor,),
 
@@ -184,14 +186,15 @@ class _CartPageState extends State<CartPage>
                                                           viewPage == ViewPage.CART ?
                                                           GestureDetector(
                                                               onTap: () async{
-                                                                loading.enable();                                                              await Future.delayed(Duration(
+                                                                loadingController.enable();
+                                                                await Future.delayed(Duration(
                                                                     seconds: 1
                                                                 ));
                                                                 int currentQuantity = list[index].quantity!;
                                                                 await controller.addItem(
                                                                     list[index].productItem!,
                                                                     currentQuantity + 1);
-                                                                loading.disable();
+                                                                loadingController.disable();
                                                               },
                                                               child: Icon(Icons.add, color: AppColors.signColor)
                                                           ) : Container()
@@ -217,7 +220,7 @@ class _CartPageState extends State<CartPage>
               ],
             ),
             bottomNavigationBar: GetBuilder<CartController>(builder: (controller) {
-              return viewPage == ViewPage.CART? getCartBottomBar(controller) : getCheckoutDetailBottomBar(controller);
+              return viewPage == ViewPage.CART? getCartBottomBar(controller) : getCartDetailBottomBar(controller);
             },
             )
         ),
@@ -225,7 +228,7 @@ class _CartPageState extends State<CartPage>
     },);
   }
 
-  Widget getCheckoutDetailBottomBar(CartController controller)
+  Widget getCartDetailBottomBar(CartController controller)
   {
     return Container(
       height: Dimensions.getHeight(100),
@@ -257,7 +260,7 @@ class _CartPageState extends State<CartPage>
               children: [
 
                 BigText(
-                    text: '\$ ${controller.checkoutAmount.toString()}',
+                    text: '\$ ${controller.cartDetailTotalAmount.toString()}',
                     size: Dimensions.getWidth(18)
                 ),
               ],
@@ -310,7 +313,12 @@ class _CartPageState extends State<CartPage>
           ),
           GestureDetector(
             onTap: () async{
+              loadingController.enable();
+              await Future.delayed(Duration(
+                  seconds: 1
+              ));
               await controller.clear();
+              loadingController.disable();
             },
             child: Container(
               alignment: Alignment.center,
@@ -331,8 +339,13 @@ class _CartPageState extends State<CartPage>
 
           GestureDetector(
             onTap: () async {
+              loadingController.enable();
+              await Future.delayed(Duration(
+                  seconds: 1
+              ));
               await controller.addToHistory();
-              await Future.delayed(Duration(seconds: 2));
+              loadingController.disable();
+              await Future.delayed(Duration(seconds: 1));
               Get.toNamed(RouteHelper.getInitial());
             },
             child: Container(

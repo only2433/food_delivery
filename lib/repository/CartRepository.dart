@@ -87,7 +87,7 @@ class CartRepository extends GetxService
         .collection('history')
         .doc(firebaseAuth.currentUser!.uid)
         .set({
-          'itemList' : cartList.map((item) => item.toJson()).toList()
+          'itemList' : data.map((item) => item.toJson()).toList()
         });
   }
 
